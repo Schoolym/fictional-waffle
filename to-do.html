@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<title>To-do list</title>
+<link type="text/css" rel="stylesheet" href="CSS/firststyle.css">
+    </head>
+    <body>
+        <nav>
+<ul>
+<li><a href="home.html">Home</a></li>
+<li><a href="Flashcards.html">Flashcards</a></li>
+</ul>
+        </nav> 
+        <h1>To-do list</h1>
+        <p>Here you can make a to-do list to help you with keeping track of your tasks</p>
+        <input id="task" placeholder="New task">
+<button id="add">Add</button>
+<ul id="list"></ul>
+
+<style>
+  li { cursor: pointer; }
+  .done { text-decoration: line-through; opacity: 0.5; }
+</style>
+
+<script>
+  const input = document.getElementById("task");
+  const list = document.getElementById("list");
+
+  function addTask() {
+    if (input.value === "") {
+      return;
+    }
+
+    const li = document.createElement("li");
+    li.innerText = input.value;
+
+    li.addEventListener("click", (event) => {
+      event.target.classList.toggle("done");
+    });
+
+    list.appendChild(li);
+    input.value = "";
+  }
+
+  document.getElementById("add").addEventListener("click", addTask);
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      addTask();
+    }
+  });
+</script>
+    </body>
+</html>
